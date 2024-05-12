@@ -42,6 +42,7 @@ public class MainWindow extends JFrame implements MouseListener, ActionListener,
 	boolean loadGame = false;
 	
 	Music musica = new Music();
+	public static float vol = 3;
 	
 	//Menu principal
 	JPanel left = new JPanel(),buttonsPanel= new JPanel();
@@ -56,9 +57,9 @@ public class MainWindow extends JFrame implements MouseListener, ActionListener,
 	
 	//Menu Configuraciones
 	JPanel configPanel = new JPanel() , mainCon = new JPanel();
-	String[] sizes ={"500,250","800,400","1700,800","2000,1000",};
+	String[] sizes ={"1700,800","2000,1000",};
 	JComboBox res = new JComboBox(sizes) ;
-	JSlider volumen = new JSlider(0,100,50);
+	JSlider volumen = new JSlider(0,6,3);
 	JLabel resLabel = new JLabel(), volumenLabel = new JLabel();
 	JButton backB = new JButton();
 	ImageIcon backBIMG = new ImageIcon("backB.png");
@@ -100,6 +101,7 @@ public class MainWindow extends JFrame implements MouseListener, ActionListener,
 	
 	public void launchMenu(JPanel left ,JLabel right  ,JLabel iconLabel ,JPanel buttonsPanel, JButton playB ,JButton configB ,JButton infoB ,JTextPane leaderboard ,JFrame frame,ImageIcon bgImage ,ImageIcon iconIMG,ImageIcon config,ImageIcon help,ImageIcon playBIMG) throws LineUnavailableException, UnsupportedAudioFileException, IOException{
 		musica.play();
+		volumen.addChangeListener(this);
 		
 		left.setVisible(true);
 		right.setVisible(true);
@@ -341,6 +343,11 @@ public class MainWindow extends JFrame implements MouseListener, ActionListener,
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
+		if(e.getSource()==volumen) {
+			vol = volumen.getValue();
+			System.out.println(vol);
+			musica.volumeCH(vol);
+		}
 		
 		
 	}
