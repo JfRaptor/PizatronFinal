@@ -38,12 +38,15 @@ public class MainWindow extends JFrame implements MouseListener, ActionListener,
 	
 	
 	//Menu principal
-	JPanel left = new JPanel(),right = new JPanel(),buttonsPanel= new JPanel();
-	ImageIcon bgImage,iconIMG = new ImageIcon("logo.png"),config = new ImageIcon("config.png"),help = new ImageIcon("info.png"),playBIMG = new ImageIcon("playB.png");;
+	JPanel left = new JPanel(),buttonsPanel= new JPanel();
+	ImageIcon bgImage,iconIMG = new ImageIcon("logo.png"),config = new ImageIcon("config.png"),help = new ImageIcon("info.png"),playBIMG = new ImageIcon("playB.png"),menu = new ImageIcon("menu.png");
 	JButton playB = new JButton(playBIMG) ,configB = new JButton(config),infoB = new JButton(help);
 	JLabel iconLabel = new JLabel();
 	JTextPane leaderboard = new JTextPane();
-	int xDim = 1700 ,yDim = 800;
+	JLabel right = new JLabel();
+	
+	public static int xDim = 1700;
+	public static int yDim = 800;
 	
 	//Menu Configuraciones
 	JPanel configPanel = new JPanel() , mainCon = new JPanel();
@@ -53,6 +56,12 @@ public class MainWindow extends JFrame implements MouseListener, ActionListener,
 	JLabel resLabel = new JLabel(), volumenLabel = new JLabel();
 	JButton backB = new JButton();
 	ImageIcon backBIMG = new ImageIcon("backB.png");
+	
+	//Game configurations 
+	
+	
+	
+	
 	
 	
 	
@@ -72,7 +81,7 @@ public class MainWindow extends JFrame implements MouseListener, ActionListener,
 		
 		
 	}
-	public void changeLaunchMenu(JPanel left,JPanel Right) {
+	public void changeLaunchMenu(JPanel left,JLabel Right) {
 		place = 0;
 		left.setVisible(true);
 		right.setVisible(true);
@@ -82,7 +91,8 @@ public class MainWindow extends JFrame implements MouseListener, ActionListener,
 		configPanel.setVisible(true);
 	}
 	
-	public void launchMenu(JPanel left ,JPanel right  ,JLabel iconLabel ,JPanel buttonsPanel, JButton playB ,JButton configB ,JButton infoB ,JTextPane leaderboard ,JFrame frame,ImageIcon bgImage ,ImageIcon iconIMG,ImageIcon config,ImageIcon help,ImageIcon playBIMG){
+	public void launchMenu(JPanel left ,JLabel right  ,JLabel iconLabel ,JPanel buttonsPanel, JButton playB ,JButton configB ,JButton infoB ,JTextPane leaderboard ,JFrame frame,ImageIcon bgImage ,ImageIcon iconIMG,ImageIcon config,ImageIcon help,ImageIcon playBIMG){
+		
 		left.setVisible(true);
 		right.setVisible(true);
 		frame.setLayout(new BorderLayout());
@@ -91,9 +101,10 @@ public class MainWindow extends JFrame implements MouseListener, ActionListener,
 		left.setPreferredSize(new Dimension(leftDimX,50));
 		left.setLayout(new GridLayout(4,1));
 		left.setBackground(new Color(0xFFC55A));
-		//right configurations
-		right.setPreferredSize(new Dimension((xDim/2)-20,50));
-		right.setBackground(Color.blue);
+		//right config
+		right.setIcon(menu);
+		right.setPreferredSize(new Dimension((MainWindow.xDim/2)-20,yDim));
+		
 		
 		//butonsPanel Config
 		
@@ -149,6 +160,7 @@ public class MainWindow extends JFrame implements MouseListener, ActionListener,
 		left.add(buttonsPanel);
 		buttonsPanel.add(configB);
 		buttonsPanel.add(infoB);
+		frame.pack();
 		
 		
 		
@@ -222,6 +234,7 @@ public class MainWindow extends JFrame implements MouseListener, ActionListener,
 		
 	}
 	
+	
 	public static void appendToPane(JTextPane tp, String txt, Color clr,int size) {
         StyleContext sc = StyleContext.getDefaultStyleContext();
         javax.swing.text.AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, clr);
@@ -291,17 +304,7 @@ public class MainWindow extends JFrame implements MouseListener, ActionListener,
 		}
 		if(place==1) {
 			if(e.getSource()==res) {
-				if(res.getSelectedItem()=="500,250") {
-					xDim = 500;
-					yDim = 250;
-					this.setSize(xDim,yDim);
-				}
-				else if(res.getSelectedItem()=="800,400") {
-					xDim = 800;
-					yDim = 400;
-					this.setSize(xDim,yDim);
-				}
-				else if(res.getSelectedItem()=="1700,800") {
+				if(res.getSelectedItem()=="1700,800") {
 					xDim = 1700;
 					yDim = 800;
 					this.setSize(xDim,yDim);
