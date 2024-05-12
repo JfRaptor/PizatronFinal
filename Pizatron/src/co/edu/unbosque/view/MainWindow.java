@@ -11,7 +11,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,6 +32,8 @@ import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import co.edu.unbosque.view.Music;
+
 public class MainWindow extends JFrame implements MouseListener, ActionListener, ChangeListener{
 	
 	int place = 0;
@@ -36,6 +41,7 @@ public class MainWindow extends JFrame implements MouseListener, ActionListener,
 	boolean loadHelp = false;
 	boolean loadGame = false;
 	
+	Music musica = new Music();
 	
 	//Menu principal
 	JPanel left = new JPanel(),buttonsPanel= new JPanel();
@@ -67,10 +73,11 @@ public class MainWindow extends JFrame implements MouseListener, ActionListener,
 	
 	
 	
-	public MainWindow(){
+	public MainWindow() throws LineUnavailableException, UnsupportedAudioFileException, IOException{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(xDim,yDim);
 		setVisible(true);
+		
 		setTitle("Pizzatron 3000");
 		launchMenu(left,right,iconLabel,buttonsPanel,playB,configB,infoB,leaderboard,this,bgImage,iconIMG,config,help,playBIMG);
 		
@@ -91,7 +98,8 @@ public class MainWindow extends JFrame implements MouseListener, ActionListener,
 		configPanel.setVisible(true);
 	}
 	
-	public void launchMenu(JPanel left ,JLabel right  ,JLabel iconLabel ,JPanel buttonsPanel, JButton playB ,JButton configB ,JButton infoB ,JTextPane leaderboard ,JFrame frame,ImageIcon bgImage ,ImageIcon iconIMG,ImageIcon config,ImageIcon help,ImageIcon playBIMG){
+	public void launchMenu(JPanel left ,JLabel right  ,JLabel iconLabel ,JPanel buttonsPanel, JButton playB ,JButton configB ,JButton infoB ,JTextPane leaderboard ,JFrame frame,ImageIcon bgImage ,ImageIcon iconIMG,ImageIcon config,ImageIcon help,ImageIcon playBIMG) throws LineUnavailableException, UnsupportedAudioFileException, IOException{
+		musica.play();
 		
 		left.setVisible(true);
 		right.setVisible(true);
@@ -164,6 +172,14 @@ public class MainWindow extends JFrame implements MouseListener, ActionListener,
 		
 		
 		
+		
+	}
+	
+	JPanel belt = new JPanel(),whiteboard = new JPanel(),costumers = new JPanel(),pizaP = new JPanel(),ingredients = new JPanel();
+	JLabel beltL = new JLabel(),pizaWlabel= new JLabel(),ingLW= new JLabel(),ing2LW= new JLabel(),ing3LW= new JLabel(),ing1= new JLabel(),ing2= new JLabel(),ing3= new JLabel();
+	ImageIcon beltIMG = new ImageIcon(),pizaWlabelIMG = new ImageIcon() ,ingWIMG = new ImageIcon() ,ing2WIMG= new ImageIcon(),ing3WIMG= new ImageIcon(),ing1IMG= new ImageIcon(), ing2IMG = new ImageIcon(),ing3IMG= new ImageIcon();
+	
+	public void game() {
 		
 	}
 	
